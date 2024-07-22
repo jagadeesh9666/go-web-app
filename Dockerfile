@@ -1,4 +1,4 @@
-FROM golang:1.21 as base
+FROM golang:1.22.5 AS base
 WORKDIR /app
 COPY go.mod ./
 RUN go mod download
@@ -10,4 +10,4 @@ FROM gcr.io/distroless/base
 COPY --from=base /app/main .
 COPY --from=base /app/static ./static
 EXPOSE 8080
-CMD ["./main"]
+CMD [ "./main" ]
